@@ -2,3 +2,5 @@ streamlit
 google.generativeai
 python-dotenv
 typing
+langchain
+langchain_community
