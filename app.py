@@ -26,7 +26,7 @@ def icon(emoji: str):
     )
 
 
-icon("🤠")
+icon("🤖")
 # initializing the models
 ## llama3
 llama_model = ChatGroq(
@@ -39,7 +39,7 @@ genai.configure(api_key=os.getenv("Google_API_KEY"))
 gemini_model = genai.GenerativeModel('gemini-1.5-pro')
 
 # title
-st.title("Mick Your Own Chatbot! ")
+st.title("MickAI: Speak Freely, Discover More")
 
 
 # creating the session state
@@ -75,6 +75,8 @@ if prompt := st.chat_input("Say something.."):
         [("system", system),
           ("human", human)])
         chain = chat | llama_model
+        #for chunk in chain.invoke({"text": prompt}):
+         #   response = chunk
         response = chain.invoke({"text": prompt})
     
         with st.chat_message("assistant", avatar="🎃"):
