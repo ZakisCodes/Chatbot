@@ -9,13 +9,26 @@ from langchain_groq import ChatGroq
 
 # loading the env variables
 load_dotenv()
-
 # set the page
 st.set_page_config(
     page_title="MickAI",
     page_icon="🎇",
     layout="wide",initial_sidebar_state="auto",
 )
+
+# hiding the Runner 
+st.sidebar.html(
+    """
+   <style>
+   [data-testid="stStatusWidget"]{
+         visibility: hidden;
+         height: 0;
+         position: fixed
+          }
+    </style>
+"""
+)
+
 
 ##  Making an custom emoji displaying function
 def icon(emoji: str):
@@ -48,20 +61,18 @@ if "messages" not in st.session_state:
 
 # display the chat history
 for message in st.session_state.messages:
-    avatar = '🎃' if message["role"] == "assistant" else '👨‍💻'
+    avatar = '🤐' if message["role"] == "assistant" else '👨‍💻'
     with st.chat_message(message["role"], avatar=avatar):
-        st.write(message["content"])
-
+        st.markdown(message["content"])
 
 
 
 
 if prompt := st.chat_input("Say something.."):
+    st.chat_message("user").markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    with st.chat_message("user", avatar='👨‍💻'):
-        st.markdown(prompt)
-        
+   
 
     # fetch response from API
     try:
@@ -74,25 +85,27 @@ if prompt := st.chat_input("Say something.."):
         chat = ChatPromptTemplate.from_messages(
         [("system", system),
           ("human", human)])
-        chain = chat | llama_model
-        #for chunk in chain.invoke({"text": prompt}):
-         #   response = chunk
-        response = chain.invoke({"text": prompt})
-    
+        chain = chat | llama_model 
+        messages = [
+        {"role":"system", "content": st.session_state.system},
+        *st.session_state.messages ]
+        
+        response = chain.invoke(messages)
+       
+        
         with st.chat_message("assistant", avatar="🎃"):
            st.write(response.content)
-        #st.session_state.messages.append({"role": "assistant", "content": response})
+        st.session_state.messages.append({"role": "assistant", "content": response.content})
     except Exception as e:
         st.error(e, icon="🚨")
-    try:
-            
-       if response.content:
-          st.session_state.messages.append(
-              {"role": "assistant", "content": response.content})
-       else:
-          st.warning("System is not updated to content other than in strings")
-    except Exception as e:
-        st.error(e, icon="🚨")
+    #try:
+     #       
+      # if response.content:
+       #   st.session_state.messages.append(
+        #      {"role": "assistant", "content": response.content})
+       ##  st.warning("System is not updated to content other than in strings")
+    #except Exception as e:
+     #   st.error(e, icon="🚨")
     
 # create an feebback from users
 

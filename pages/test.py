@@ -9,7 +9,17 @@ from langchain_core.output_parsers import StrOutputParser
 
 
 st.title("Chat")
-
+st.sidebar.html(
+    """
+   <style>
+   [data-testid="stStatusWidget"]{
+         visibility: hidden;
+         height: 0;
+         position: fixed
+          }
+    </style>
+"""
+)
 def get_response(user_query, chat_history):
 
     template = """
