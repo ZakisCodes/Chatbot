@@ -20,6 +20,19 @@ st.sidebar.html(
     </style>
 """
 )
+hide_hosted_sym = """
+   <style>
+   .viewerBadge_link__qRIco{
+       display: none;}
+   </style>
+"""
+st.markdown(hide_hosted_sym, unsafe_allow_html=True)hide_hosted_sym = """
+   <style>
+   .viewerBadge_link__qRIco{
+       display: none;}
+   </style>
+"""
+st.markdown(hide_hosted_sym, unsafe_allow_html=True)
 def get_response(user_query, chat_history):
 
     template = """
