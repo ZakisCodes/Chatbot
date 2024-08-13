@@ -32,7 +32,7 @@ st.sidebar.html(
 hide_hosted_sym = """
    <style>
    .viewerBadge_link__qRIco{
-       display: none;}
+       display: none !important;}
    </style>
 """
 st.markdown(hide_hosted_sym, unsafe_allow_html=True)
