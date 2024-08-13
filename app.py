@@ -29,25 +29,14 @@ st.sidebar.html(
 """
 )
 
-hide_hosted_sym =  """
-            <style>
-            /* Hide the watermark using CSS */
-            .viewerBadge_container__r5tak {
-                visibility: hidden;
-            }
+hide_hosted_sym = """
 
-            /* Hide the watermark using JavaScript */
-            </style>
-            <script>
-            // Wait for the DOM to load, then remove the watermark
-            setTimeout(function() { 
-                var elements = document.getElementsByClassName('viewerBadge_container__r5tak');
-                if (elements.length > 0) {
-                    elements[0].remove();
-                }
-            }, 100);
-            </script>
-            """
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
 st.markdown(hide_hosted_sym, unsafe_allow_html=True)
 ##  Making an custom emoji displaying function
 def icon(emoji: str):
