@@ -29,15 +29,8 @@ st.sidebar.html(
 """
 )
 
-hide_hosted_sym = """
 
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
 
-"""
-
-st.markdown(hide_hosted_sym, unsafe_allow_html=True)
 ##  Making an custom emoji displaying function
 def icon(emoji: str):
     """Shows an emoji as a Notion-style page icon."""
