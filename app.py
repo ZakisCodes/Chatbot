@@ -31,9 +31,10 @@ st.sidebar.html(
 
 hide_hosted_sym = """
    <style>
-   [class^="viewerBadge_link"], [class^="viewerBadge_container"]
+   [class^="viewerBadge_link"],
+   [class^="viewerBadge_container"]
    {
-       display: none !important;
+       display:none !important;
     }
    </style>
 """
