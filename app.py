@@ -31,7 +31,7 @@ st.sidebar.html(
 
 hide_hosted_sym = """
    <style>
-   .viewerBadge_link__qRIco{
+   .viewerBadge_link{
        display: none !important;}
    </style>
 """
