@@ -30,14 +30,12 @@ st.sidebar.html(
 )
 
 hide_hosted_sym = """
-   <style>
-   [class^="viewerBadge_link"],
-   [class^="viewerBadge_container"]
-   {
-       display:none !important;
-    }
-   </style>
-"""
+            <style>
+            .viewerBadge_container__r5tak {
+                display: none;
+            }
+            </style>
+            """
 st.markdown(hide_hosted_sym, unsafe_allow_html=True)
 ##  Making an custom emoji displaying function
 def icon(emoji: str):
