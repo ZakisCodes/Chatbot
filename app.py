@@ -29,12 +29,24 @@ st.sidebar.html(
 """
 )
 
-hide_hosted_sym = """
+hide_hosted_sym =  """
             <style>
+            /* Hide the watermark using CSS */
             .viewerBadge_container__r5tak {
-                display: none;
+                visibility: hidden;
             }
+
+            /* Hide the watermark using JavaScript */
             </style>
+            <script>
+            // Wait for the DOM to load, then remove the watermark
+            setTimeout(function() { 
+                var elements = document.getElementsByClassName('viewerBadge_container__r5tak');
+                if (elements.length > 0) {
+                    elements[0].remove();
+                }
+            }, 100);
+            </script>
             """
 st.markdown(hide_hosted_sym, unsafe_allow_html=True)
 ##  Making an custom emoji displaying function
