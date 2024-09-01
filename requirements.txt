@@ -1,10 +1,9 @@
 streamlit
-google.generativeai
 python-dotenv
-typing
 langchain==0.2.9
 langchain-core==0.2.21
 langchain-groq==0.1.6
 langchain-text-splitters==0.2.2
 yt_dlp
 pydub
+firebase-admin
