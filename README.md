@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Done something with st.authenticator
 Sample Login.py
 ```
@@ -27,3 +28,9 @@ elif st.session_state['authentication_status'] is False:
 elif st.session_state['authentication_status'] is None:
     st.warning('Please enter your username and password')
 ```
+=======
+# MickAI Chatbot
+Creating an Personalized chatbot for own is every techies one wish, I created this chatbot by using `streamlit`, `langchain`, `groq`. 
+
+More on the way
+>>>>>>> 9c52eedb40d6bb0b9e5f78be2e81850009803278
