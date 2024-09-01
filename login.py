@@ -4,7 +4,9 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from time import sleep
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 # creatin session states to more functionality
@@ -24,8 +26,8 @@ if "default" not in st.session_state:
 currentpage = st.session_state.default
 
 # function for firebase app initialization
-def init_with_service_account(file_path):
-    cred = credentials.Certificate(file_path)
+def init_with_service_account(credintial):
+    cred = credentials.Certificate(credintial)
     try:
          firebase_admin.get_app()
     except ValueError:
@@ -34,8 +36,19 @@ def init_with_service_account(file_path):
         
 
 # initailazing firebase firestore
-cred_path = "D:/Work/Python/Streamlit Apps/Chatbot_org/mickai-fd72a-8872d7000274.json"
-db = init_with_service_account(cred_path)
+#cred_path = "D:/Work/Python/Streamlit Apps/Chatbot_org/mickai-fd72a-8872d7000274.json"
+firebase_credentials = { "type": os.getenv('type'),
+  "project_id": os.getenv('project_id'),
+  "private_key_id": os.getenv('private_key_id'),
+  "private_key": os.getenv('private_key'),
+  "client_email": os.getenv('client_email'),
+  "client_id": os.getenv('client_id'),
+  "auth_uri": os.getenv('auth_uri'),
+  "token_uri": os.getenv('token_uri'),
+  "auth_provider_x509_cert_url": os.getenv('auth_provider_x509_cert_url'),
+  "client_x509_cert_url": os.getenv('client_x509_cert_url'),
+  "universe_domain": os.getenv('universe_domain')}
+db = init_with_service_account(firebase_credentials)
 
 # Login Function page
 def login():
