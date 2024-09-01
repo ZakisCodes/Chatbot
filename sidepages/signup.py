@@ -11,13 +11,13 @@ st.title("Registering our account here..")
 
 # initailazing firebase firestore
 
-def init_with_service_account(file_path):
+def init_with_service_account(credintials):
      """
      Initialize the Firestore DB client using a service account
      :param file_path: path to service account
      :return: firestore
      """
-     cred = credentials.Certificate(file_path)
+     cred = credentials.Certificate(credintials)
      try:
          firebase_admin.get_app()
      except ValueError:
