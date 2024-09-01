@@ -49,8 +49,8 @@ llama_model = ChatGroq(
     api_key=os.getenv("GROQ_API") # Optional if not set as an environment variable)
 )
 ## gemini 1.5 pro
-genai.configure(api_key=os.getenv("Google_API_KEY"))
-gemini_model = genai.GenerativeModel('gemini-1.5-pro')
+#genai.configure(api_key=os.getenv("Google_API_KEY"))
+#gemini_model = genai.GenerativeModel('gemini-1.5-pro')
 
 # title
 st.title("MickAI: Speak Freely, Discover More")
