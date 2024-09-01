@@ -1,4 +1,6 @@
 .env
 .venv/
 .streamlit/secrets.toml
-
+Model/
+__pycache__
+mickai-fd72a-8872d7000274.json
