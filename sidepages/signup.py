@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -42,10 +43,17 @@ with st.form('Register your account', clear_on_submit=True):
     email = st.text_input("EmailID:")
     password = st.text_input("Password", type='password')
     if st.form_submit_button('Submit'):
-        doc_ref = db.collection('users').document(name)
-        doc_ref.set({'name': name ,'email': email, 'password': password})
-        st.success('Account created succesfully')
-        st.session_state.signup = False
-        st.rerun()
-    else:
-        st.error("Please fill the form")
+        if not name:
+            st.error('Enter your username please')
+        elif not email:
+            st.error('Enter your emailid please')
+        elif not password:
+            st.error('Enter your password please')
+        else:
+            doc_ref = db.collection('users').document(name)
+            doc_ref.set({'name': name ,'email': email, 'password': password})
+            st.success('Account created succesfully')
+            time.sleep(0.5)
+            st.session_state.signup = False
+            st.rerun()
+    

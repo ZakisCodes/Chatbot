@@ -64,9 +64,9 @@ def login():
              admin = doc_ref.to_dict().get('admin', False)
              if password == doc:
                  #st.toast('Hooraay you have blasted', icon='😎')
+                sleep(0.5)
                 st.success("Logged in successfully!")
                 st.session_state.logged = True
-                sleep(0.5)
                 if admin:
                   st.session_state.admin = True
                 else: pass
