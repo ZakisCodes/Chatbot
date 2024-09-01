@@ -57,3 +57,6 @@ with st.form('Register your account', clear_on_submit=True):
             st.session_state.signup = False
             st.rerun()
     
+if st.button("Already have an account, click to login"):
+        st.session_state.signup = False
+        st.rerun()
