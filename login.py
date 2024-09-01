@@ -53,7 +53,6 @@ db = init_with_service_account(firebase_credentials)
 # Login Function page
 def login():
     st.title("Login your account here..")
-    st.write("username': 'Zakin', password: '123azsdx'")
     with st.form('Login', clear_on_submit=True):
        name = st.text_input("Username: ")
        password = st.text_input("Password", type='password')
