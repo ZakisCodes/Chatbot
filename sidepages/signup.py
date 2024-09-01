@@ -2,7 +2,9 @@ import streamlit as st
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-
+import os 
+from dotenv import load_dotenv
+load_dotenv()
 
 st.title("Registering our account here..")
 
@@ -22,9 +24,18 @@ def init_with_service_account(file_path):
          firebase_admin.initialize_app(cred)
      return firestore.client()
         
-
-cred_path = "D:/Work/Python/Streamlit Apps/Chatbot_org/mickai-fd72a-8872d7000274.json"
-db = init_with_service_account(cred_path)
+firebase_credentials = { "type": os.getenv('type'),
+  "project_id": os.getenv('project_id'),
+  "private_key_id": os.getenv('private_key_id'),
+  "private_key": os.getenv('private_key'),
+  "client_email": os.getenv('client_email'),
+  "client_id": os.getenv('client_id'),
+  "auth_uri": os.getenv('auth_uri'),
+  "token_uri": os.getenv('token_uri'),
+  "auth_provider_x509_cert_url": os.getenv('auth_provider_x509_cert_url'),
+  "client_x509_cert_url": os.getenv('client_x509_cert_url'),
+  "universe_domain": os.getenv('universe_domain')}
+db = init_with_service_account(firebase_credentials)
 
 with st.form('Register your account', clear_on_submit=True):
     name = st.text_input("Username: ")
