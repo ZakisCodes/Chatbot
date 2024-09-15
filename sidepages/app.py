@@ -41,13 +41,21 @@ def icon(emoji: str):
 
 
 icon("🤖")
+
+
+# models
+model = st.session_state.model
+st.write(model)
 # initializing the models
 ## llama3
 llama_model = ChatGroq(
-    temperature=0,
-    model="llama3-70b-8192",
+    temperature=0.7,
+    top_p = 0.7,
+    max_tokens=1024,
+    model=model,
     api_key=os.getenv("GROQ_API") # Optional if not set as an environment variable)
 )
+
 ## gemini 1.5 pro
 #genai.configure(api_key=os.getenv("Google_API_KEY"))
 #gemini_model = genai.GenerativeModel('gemini-1.5-pro')
@@ -62,7 +70,7 @@ if "messages" not in st.session_state:
 
 # display the chat history
 for message in st.session_state.messages:
-    avatar = '🤐' if message["role"] == "assistant" else '👨‍💻'
+    avatar = '👤' if message["role"] == "assistant" else '🤖'
     with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
 
@@ -70,7 +78,7 @@ for message in st.session_state.messages:
 
 
 if prompt := st.chat_input("Say something.."):
-    st.chat_message("user").markdown(prompt)
+    st.chat_message("user", avatar='👤').markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
    
@@ -94,7 +102,7 @@ if prompt := st.chat_input("Say something.."):
         response = chain.invoke(messages)
        
         
-        with st.chat_message("assistant", avatar="🎃"):
+        with st.chat_message("assistant", avatar="🤖"):
            st.write(response.content)
         st.session_state.messages.append({"role": "assistant", "content": response.content})
     except Exception as e:

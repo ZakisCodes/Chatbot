@@ -23,6 +23,9 @@ if "admin" not in st.session_state:
 if "default" not in st.session_state:
     st.session_state.default = False
 
+if 'model' not in st.session_state:
+   st.session_state.model = "llama3-70b-8192"
+
 currentpage = st.session_state.default
 
 # function for firebase app initialization
